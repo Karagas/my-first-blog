@@ -1,27 +1,30 @@
 {% extends 'blog/base.html' %}
-
 {% block content %}
-    {% for post in posts %}
-        <div class="post">
-            <div class="date">
-                <p>published: {{ post.published_date }}</p>
-            </div>
-	    <h1><a href="{% url 'post_detail' pk=post.pk %}">{{ post.title }}</a></h1>
-            <p>{{ post.text|linebreaksbr }}</p>
-	    <a href="{% url 'post_detail' pk=post.pk %}">Comments: {{ post.approved_comments.count }}</a>
-        </div>
-	{% endfor %}
-	<div class="pagination">
-		{% if posts.has_previous %}
-			<a href="{% url 'post_list' posts.previous_page_number %}">Previous</a>
-		{% endif%}
-
-	<span class="current">
-		Page {{ posts.number }} of {{ posts.paginator.num_pages }}
-	</span>
-
-	{% if posts.has_next %}
-		<a href="{% url 'post_list' posts.next_page_number %}">Next</a>
-	{% endif %}
-	</div>
+		
+		{% for post in posts %}
+		<div class="w3-third w3-container w3-margin-bottom">
+		      <img src="/w3images/lights.jpg" alt="Norway" style="width:100%" class="w3-hover-opacity">
+		      <div class="w3-container w3-dark-gray" style="max-height:185px; overflow:hidden">
+                        <a href="{% url 'post_detail' pk=post.pk %}"><b>{{ post.title }}</b></a>
+			<p>{{post.published_date}}
+		        <p>{{post.text|linebreaksbr}}</p>
+		      </div>
+		</div>
+		{% endfor %}
+	        
+		
+		<div class="w3-row-padding">
+       	        <div class="w3-center w3-padding-32">
+		    <div class="w3-bar">
+		      {% if posts.has_previous %}
+		      <a href="{% url 'post_list' posts.previous_page_number %}" class="w3-bar-item w3-button w3-hover-black">«</a>
+		      {% endif %}
+		      <a href="#" class="w3-bar-item w3-dark-gray w3-button">{{ posts.number }}</a>
+		      {% if posts.has_next %}
+		      <a href="{% url 'post_list' posts.next_page_number %}" class="w3-bar-item w3-button w3-hover-black">»</a>
+		      {% endif %}
+		    </div>
+		</div>
+		</div>
+		
 {% endblock %}

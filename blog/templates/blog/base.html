@@ -1,31 +1,120 @@
-{% load staticfiles %}
+<!DOCTYPE html>
 <html>
-	<head>
-        	<title>Mad Circuits Blog</title>
-        	<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
-        	<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">
-        	<link href='//fonts.googleapis.com/css?family=Lobster&subset=latin,latin-ext' rel='stylesheet' type='text/css'>
-        	<link rel="stylesheet" href="{% static 'css/blog.css' %}">
-	</head>
-	<body>
-    		<div class="page-header">
-		{% if user.is_authenticated %}
-			<a href="{% url 'post_new' %}" class="top-menu"><span class="glyphicon glyphicon-plus"></span></a>
-			<a href="{% url 'post_draft_list' %}" class="top-menu"><span class="glyphicon glyphicon-edit"></span></a>
-			<p class="top-menu">Hello {{ user.username }} <small>(<a href="{% url 'logout' %}">Log out</a>)</small></p>
-		{% else %}
-			<a href="{% url 'login' %}" class="top-menu"><span class="glyphicon glyphicon-lock"></span></a>
-        	{% endif %}
+<title>Mad Circuits</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Oswald">
+<link href='//fonts.googleapis.com/css?family=Roboto+Mono&subset=latin,latin-ext' rel='stylesheet' type='text/css'>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<style>
+body,h2,h3,h4,h5,h6 {font-family: "Oswald", sans-serif, font-size: 15px}
+h1 {font-family: "Roboto Mono", sans-serif}
+</style>
+<body class="w3-light-grey w3-content" style="max-width:1600px">
 
-			<h1><a href="/">Mad Circuits</a></h1>
-    		</div>
-    		<div class="content container">
-        		<div class="row">
-            			<div class="col-md-8">
-            				{% block content %}
-            				{% endblock %}
-            			</div>
-        		</div>
-    		</div>
-	</body>
+<!-- Sidebar/menu -->
+<nav class="w3-sidebar w3-collapse w3-white w3-animate-left" style="z-index:3;width:300px;" id="mySidebar"><br>
+  <div class="w3-container">
+    <a href="#" onclick="w3_close()" class="w3-hide-large w3-right w3-jumbo w3-padding w3-hover-grey" title="close menu">
+      <i class="fa fa-remove"></i>
+    </a>
+    <h4><b>MENU</b></h4>
+  </div>
+  <div class="w3-bar-block">
+    <a href="/" onclick="w3_close()" class="w3-bar-item w3-button w3-padding"><i class="fa fa-microchip fa-fw w3-margin-right"></i>BLOG</a> 
+    <a href="#Did_you_know" onclick="w3_close()" class="w3-bar-item w3-button w3-padding"><i class="fa fa-question fa-fw w3-margin-right"></i>DID YOU KNOW?</a>
+    <a href="{% url 'infos' %}" onclick="w3_close()" class="w3-bar-item w3-button w3-padding"><i class="fa fa-user fa-fw w3-margin-right"></i>ABOUT</a> 
+    <a href="{% url 'contact' %}" onclick="w3_close()" class="w3-bar-item w3-button w3-padding"><i class="fa fa-envelope fa-fw w3-margin-right"></i>CONTACT</a>
+  </div>
+  <div class="w3-panel w3-large">
+    <a href="http://twitter.com/MadCircuits/"><i class="fa fa-twitter w3-hover-opacity"></i></a>
+  </div>
+</nav>
+
+<!-- Overlay effect when opening sidebar on small screens -->
+<div class="w3-overlay w3-hide-large w3-animate-opacity" onclick="w3_close()" style="cursor:pointer" title="close side menu" id="myOverlay"></div>
+
+<!-- !PAGE CONTENT! -->
+<div class="w3-main" style="margin-left:300px">
+
+  <!-- Header -->
+  <header id="portfolio">
+    <div class="w3-container">
+    <a href="/"><h1><b>Mad Circuits Blog</b></h1></a>
+    </div>
+  </header>
+  
+  {% block content %}
+  {% endblock %}
+  
+  <!-- Footer -->
+  <footer class="w3-container w3-padding-32 w3-dark-grey">
+  <div class="w3-row-padding">
+    <div class="w3-third">
+      <h3>DISCLAIMER</h3>
+      <p>Come and join us in a journey to discover electronics related to audio. Be it for guitar and/or modular synth. None of us has any idea  what we're doing here.</p>
+    </div>
+  
+    <div class="w3-third">
+      <h3>RANDOM BLOG POSTS</h3>
+      <ul class="w3-ul w3-hoverable">
+      {% for post in random %}
+        <a href="{% url 'post_detail' pk=post.pk %}"><li class="w3-padding-16" style="max-height:90px; overflow: hidden">
+          <img src="/w3images/workshop.jpg" class="w3-left w3-margin-right" style="width:50px">
+          <span class="w3-large">{{ post.title }}</span><br>
+          <span>{{ post.text|linebreaksbr }}</span>
+        </li></a>
+      {% endfor %}
+<!--        <li class="w3-padding-16">
+          <img src="/w3images/gondol.jpg" class="w3-left w3-margin-right" style="width:50px">
+          <span class="w3-large">Ipsum</span><br>
+          <span>Praes tinci sed</span>
+        </li>--> 
+      </ul>
+    </div>
+
+    <div class="w3-third">
+      <h3>POPULAR TAGS (COMING SOON)</h3>
+      <p>
+        <span class="w3-tag w3-black w3-margin-bottom">Travel</span> <span class="w3-tag w3-grey w3-small w3-margin-bottom">New York</span> <span class="w3-tag w3-grey w3-small w3-margin-bottom">London</span>
+        <span class="w3-tag w3-grey w3-small w3-margin-bottom">IKEA</span> <span class="w3-tag w3-grey w3-small w3-margin-bottom">NORWAY</span> <span class="w3-tag w3-grey w3-small w3-margin-bottom">DIY</span>
+        <span class="w3-tag w3-grey w3-small w3-margin-bottom">Ideas</span> <span class="w3-tag w3-grey w3-small w3-margin-bottom">Baby</span> <span class="w3-tag w3-grey w3-small w3-margin-bottom">Family</span>
+        <span class="w3-tag w3-grey w3-small w3-margin-bottom">News</span> <span class="w3-tag w3-grey w3-small w3-margin-bottom">Clothing</span> <span class="w3-tag w3-grey w3-small w3-margin-bottom">Shopping</span>
+        <span class="w3-tag w3-grey w3-small w3-margin-bottom">Sports</span> <span class="w3-tag w3-grey w3-small w3-margin-bottom">Games</span>
+      </p>
+    </div>
+  </div>
+  <div class="w3-row-padding w3-center">
+  <i class="fa fa-beer w3-margin-right"></i>Everything here is, of course, under Beer-ware license.<i class="fa fa-beer w3-margin-left"></i>
+  </div>
+  <div class="w3-ro-padding w3-right">
+  	{% if user.is_authenticated %}
+		<a href="{% url 'post_new' %}"><span class="fa fa-plus-square"></span></a>
+		<a href="{% url 'post_draft_list' %}"><span class="fa fa-file-times"></span></a>
+		<p class="top-menu">Hello {{ user.username }} <small>(<a href="{% url 'logout' %}">Log out</a>)</small></p>
+	{% else %}
+		<a href="{% url 'login' %}" class="top-menu"><span class="fa fa-lock"></span></a>
+        {% endif %}
+  </div>
+  </footer>
+
+<!-- End page content -->
+</div>
+
+<script>
+// Script to open and close sidebar
+function w3_open() {
+    document.getElementById("mySidebar").style.display = "block";
+    document.getElementById("myOverlay").style.display = "block";
+}
+ 
+function w3_close() {
+    document.getElementById("mySidebar").style.display = "none";
+    document.getElementById("myOverlay").style.display = "none";
+}
+</script>
+
+</body>
 </html>
+
