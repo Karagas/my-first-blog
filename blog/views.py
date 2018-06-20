@@ -39,7 +39,7 @@ def post_detail(request, pk):
 def post_new(request):
     if request.method == "POST":
         form = PostForm(request.POST)
-	random = Post.objects.order_by('?')[:2]
+        random = Post.objects.order_by('?')[:2]
         if form.is_valid():
             post = form.save(commit=False)
             post.author = request.user
