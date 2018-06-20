@@ -9,12 +9,16 @@ from .models import Post, Comment
 
 from .forms import PostForm, CommentForm, ContactForm
 
+from django.template.loader import get_template
+
 from django.core.mail import EmailMessage
 
 from django.contrib.auth.decorators import login_required
 
 from django.core.paginator import Paginator, EmptyPage
 # Create your views here.
+
+
 
 def post_list(request, page=1):
 	posts = Post.objects.filter(published_date__lte=timezone.now()).order_by('published_date')
