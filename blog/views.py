@@ -23,7 +23,7 @@ from django.core.paginator import Paginator, EmptyPage
 def post_list(request, page=1):
 	posts = Post.objects.filter(published_date__lte=timezone.now()).order_by('published_date')
 	paginator = Paginator(posts, 9)
-        random = Post.objects.order_by('?')[:2]
+	random = Post.objects.order_by('?')[:2]
 	try:
 		posts = paginator.page(page)
 	except EmptyPage:
