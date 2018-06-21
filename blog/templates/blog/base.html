@@ -14,26 +14,32 @@ h1 {font-family: "Roboto Mono", sans-serif}
 <body class="w3-light-grey w3-content" style="max-width:1600px">
 
 <!-- Sidebar/menu -->
-<nav class="w3-sidebar w3-white w3-animate-left" style="z-index:3;width:200px;" id="mySidebar"><br>
+<nav class="w3-sidebar w3-collapse w3-white w3-animate-left" style="z-index:3;width:200px;" id="mySidebar"><br>
   <div class="w3-container">
+   <a href="#" onclick="w3_close()" class="w3-right w3-xlarge w3-hide-large w3-padding w3-hover-grey" title="close menu">
+    <i class="fa fa-remove"></i>
+   </a>
     <h4><b>MENU</b></h4>
   </div>
   <div class="w3-bar-block">
-    <a href="/" class="w3-bar-item w3-button w3-padding"><i class="fa fa-microchip fa-fw w3-margin-right"></i>BLOG</a> 
-    <a href="#Did_you_know" class="w3-bar-item w3-button w3-padding"><i class="fa fa-question fa-fw w3-margin-right"></i>DID YOU KNOW?</a>
-    <a href="{% url 'infos' %}" class="w3-bar-item w3-button w3-padding"><i class="fa fa-user fa-fw w3-margin-right"></i>ABOUT</a> 
-    <a href="{% url 'contact' %}" class="w3-bar-item w3-button w3-padding"><i class="fa fa-envelope fa-fw w3-margin-right"></i>CONTACT</a>
+    <a href="/" onclick="w3_close()" class="w3-bar-item w3-button w3-padding"><i class="fa fa-microchip fa-fw w3-margin-right"></i>BLOG</a> 
+    <a href="#Did_you_know" onclick="w3_close()" class="w3-bar-item w3-button w3-padding"><i class="fa fa-question fa-fw w3-margin-right"></i>DID YOU KNOW?</a>
+    <a href="{% url 'infos' %}" onclick="w3_close()" class="w3-bar-item w3-button w3-padding"><i class="fa fa-user fa-fw w3-margin-right"></i>ABOUT</a> 
+    <a href="{% url 'contact' %}" onclick="w3_close()" class="w3-bar-item w3-button w3-padding"><i class="fa fa-envelope fa-fw w3-margin-right"></i>CONTACT</a>
   </div>
   <div class="w3-panel w3-large">
     <a href="http://twitter.com/MadCircuits/"><i class="fa fa-twitter w3-hover-opacity"></i></a>
   </div>
 </nav>
 
+<div class="w3-overlay w3-hide-large w3-animate-opacity" onclick="w3_close()" style="cursor:pointer" title="close side menu" id="myOverlay"></div>
+
 <!-- !PAGE CONTENT! -->
 <div class="w3-main" style="margin-left:200px">
 
   <!-- Header -->
-  <header id="portfolio" style="background-image:url("https://i.imgur.com/1NwRFYW.png")">
+  <header id="portfolio">
+    <span class="w3-button w3-hide-large w3-xxlarge w3-hover-text-grey" onclick="w3_open()"><i class="fa fa-bars"></i></span>
     <div class="w3-container">
     <a href="/"><h1><b>Mad Circuits Blog</b></h1></a>
     </div>
@@ -90,6 +96,18 @@ h1 {font-family: "Roboto Mono", sans-serif}
 
 <!-- End page content -->
 </div>
+
+<script>
+function w3_open() {
+	document.getElementById("mySidebar").style.display = "block";
+	document.getElementById("myOverlay").style.display = "block";
+}
+
+function w3_close() {
+	document.getElementById("mySidebar").style.display = "none";
+	document.getElementById("myOverlay").style.display = "none";
+}
+</script>
 
 </body>
 </html>
