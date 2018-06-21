@@ -14,25 +14,21 @@ h1 {font-family: "Roboto Mono", sans-serif}
 <body class="w3-light-grey w3-content" style="max-width:1600px">
 
 <!-- Sidebar/menu -->
-<nav class="w3-sidebar w3-collapse w3-white w3-animate-left" style="z-index:3;width:200px;" id="mySidebar"><br>
+<nav class="w3-sidebar w3-white w3-animate-left" style="z-index:3;width:200px;" id="mySidebar"><br>
   <div class="w3-container">
-    <a href="#" onclick="w3_close()" class="w3-hide-large w3-right w3-jumbo w3-padding w3-hover-grey" title="close menu"><i class="fa fa-remove"></i></a>
     <h4><b>MENU</b></h4>
   </div>
   <div class="w3-bar-block">
-    <a href="/" onclick="w3_close()" class="w3-bar-item w3-button w3-padding"><i class="fa fa-microchip fa-fw w3-margin-right"></i>BLOG</a> 
-    <a href="#Did_you_know" onclick="w3_close()" class="w3-bar-item w3-button w3-padding"><i class="fa fa-question fa-fw w3-margin-right"></i>DID YOU KNOW?</a>
-    <a href="{% url 'infos' %}" onclick="w3_close()" class="w3-bar-item w3-button w3-padding"><i class="fa fa-user fa-fw w3-margin-right"></i>ABOUT</a> 
-    <a href="{% url 'contact' %}" onclick="w3_close()" class="w3-bar-item w3-button w3-padding"><i class="fa fa-envelope fa-fw w3-margin-right"></i>CONTACT</a>
+    <a href="/" class="w3-bar-item w3-button w3-padding"><i class="fa fa-microchip fa-fw w3-margin-right"></i>BLOG</a> 
+    <a href="#Did_you_know" class="w3-bar-item w3-button w3-padding"><i class="fa fa-question fa-fw w3-margin-right"></i>DID YOU KNOW?</a>
+    <a href="{% url 'infos' %}" class="w3-bar-item w3-button w3-padding"><i class="fa fa-user fa-fw w3-margin-right"></i>ABOUT</a> 
+    <a href="{% url 'contact' %}" class="w3-bar-item w3-button w3-padding"><i class="fa fa-envelope fa-fw w3-margin-right"></i>CONTACT</a>
   </div>
   <div class="w3-panel w3-large">
     <a href="http://twitter.com/MadCircuits/"><i class="fa fa-twitter w3-hover-opacity"></i></a>
   </div>
 </nav>
 
-<!-- Overlay effect when opening sidebar on small screens -->
-<!--<div class="w3-overlay w3-hide-large w3-animate-opacity" onclick="w3_close()" style="cursor:pointer" title="close side menu" id="myOverlay"></div>
--->
 <!-- !PAGE CONTENT! -->
 <div class="w3-main" style="margin-left:200px">
 
@@ -64,11 +60,6 @@ h1 {font-family: "Roboto Mono", sans-serif}
           <span>{{ post.text|linebreaksbr }}</span>
         </li></a>
       {% endfor %}
-<!--        <li class="w3-padding-16">
-          <img src="/w3images/gondol.jpg" class="w3-left w3-margin-right" style="width:50px">
-          <span class="w3-large">Ipsum</span><br>
-          <span>Praes tinci sed</span>
-        </li>--> 
       </ul>
     </div>
 
@@ -99,19 +90,6 @@ h1 {font-family: "Roboto Mono", sans-serif}
 
 <!-- End page content -->
 </div>
-
-<script>
-// Script to open and close sidebar
-function w3_open() {
-    document.getElementById("mySidebar").style.display = "block";
-    document.getElementById("myOverlay").style.display = "block";
-}
- 
-function w3_close() {
-    document.getElementById("mySidebar").style.display = "none";
-    document.getElementById("myOverlay").style.display = "none";
-}
-</script>
 
 </body>
 </html>
