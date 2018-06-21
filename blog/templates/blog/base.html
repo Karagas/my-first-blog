@@ -23,7 +23,7 @@ h1 {font-family: "Roboto Mono", sans-serif}
   </div>
   <div class="w3-bar-block">
     <a href="/" onclick="w3_close()" class="w3-bar-item w3-button w3-padding"><i class="fa fa-microchip fa-fw w3-margin-right"></i>BLOG</a> 
-    <a href="#Did_you_know" onclick="w3_close()" class="w3-bar-item w3-button w3-padding"><i class="fa fa-question fa-fw w3-margin-right"></i>DID YOU KNOW?</a>
+    <a href="{% url 'didyouknow' %}" onclick="w3_close()" class="w3-bar-item w3-button w3-padding"><i class="fa fa-question fa-fw w3-margin-right"></i>DID YOU KNOW?</a>
     <a href="{% url 'infos' %}" onclick="w3_close()" class="w3-bar-item w3-button w3-padding"><i class="fa fa-user fa-fw w3-margin-right"></i>ABOUT</a> 
     <a href="{% url 'contact' %}" onclick="w3_close()" class="w3-bar-item w3-button w3-padding"><i class="fa fa-envelope fa-fw w3-margin-right"></i>CONTACT</a>
   </div>
@@ -38,10 +38,13 @@ h1 {font-family: "Roboto Mono", sans-serif}
 <div class="w3-main" style="margin-left:200px">
 
   <!-- Header -->
-  <header id="portfolio">
+  <header id="portfolio" class="w3-row-padding">
     <span class="w3-button w3-hide-large w3-xxlarge w3-hover-text-grey" onclick="w3_open()"><i class="fa fa-bars"></i></span>
-    <div class="w3-container">
-    <a href="/"><h1><b>Mad Circuits Blog</b></h1></a>
+    <div class="w3-container w3-half">
+    <a href="/"><h1 class="w3-center" style="margin-top:100px"><b>Mad Circuits</b></h1></a>
+    </div>
+    <div class="w3-half">
+    <img class="w3-image" src="https://i.imgur.com/tign5sV.png" alt="Logo" width="600" height="100">
     </div>
   </header>
   

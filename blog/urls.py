@@ -14,4 +14,5 @@ urlpatterns = [
 	url(r'^comment/(?P<pk>\d+)/remove/$', views.comment_remove, name='comment_remove'),
 	url(r'^contact/$', views.contact, name='contact'),
 	url(r'^informations/$', views.infos, name='infos'),
+	url(r'^dyk/$', views.did_you_know, name='didyouknow'),
 ]

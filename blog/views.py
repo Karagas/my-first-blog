@@ -22,7 +22,7 @@ from django.core.paginator import Paginator, EmptyPage
 
 def post_list(request, page=1):
 	posts = Post.objects.filter(published_date__lte=timezone.now()).order_by('published_date')
-	paginator = Paginator(posts, 9)
+	paginator = Paginator(posts, 6)
 	random = Post.objects.order_by('?')[:2]
 	try:
 		posts = paginator.page(page)
@@ -147,3 +147,7 @@ def infos(request):
     random = Post.objects.order_by('?')[:2]
     return render(request, 'blog/infos.html',{'random': random})
 
+
+def did_you_know(request):
+    random = Post.objects.order_by('?')[:2]
+    return render(request, 'blog/did_you_know.html',{'random': random})
